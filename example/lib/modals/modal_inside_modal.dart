@@ -13,6 +13,7 @@ class ModalInsideModal extends StatelessWidget {
     return Material(
         child: CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
+          transitionBetweenRoutes: false,
           leading: Container(), middle: Text('Modal Page')),
       child: SafeArea(
         bottom: false,
