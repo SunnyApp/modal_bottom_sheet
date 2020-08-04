@@ -8,6 +8,7 @@ class NestedScrollModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scrollController = PrimaryScrollController.of(context);
     return NestedScrollView(
       controller: ScrollController(),
       physics: ScrollPhysics(parent: PageScrollPhysics()),

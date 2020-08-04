@@ -393,10 +393,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
       child: RepaintBoundary(child: child),
     );
 
-    return ScrollToTopStatusBarHandler(
-      child: child,
-      scrollController: _scrollController,
-    );
+    return PrimaryScrollStatusBarHandler(child: child);
   }
 }
 

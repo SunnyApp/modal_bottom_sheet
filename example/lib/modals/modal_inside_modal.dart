@@ -9,6 +9,7 @@ class ModalInsideModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scrollController = PrimaryScrollController.of(context);
     return Material(
         child: CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(

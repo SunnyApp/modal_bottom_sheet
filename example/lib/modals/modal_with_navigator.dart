@@ -9,6 +9,7 @@ class ModalWithNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scrollController = PrimaryScrollController.of(context);
     return Material(
         child: Navigator(
       onGenerateRoute: (_) => MaterialPageRoute(
