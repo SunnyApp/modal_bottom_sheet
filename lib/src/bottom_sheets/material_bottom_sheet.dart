@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dartt';
-
-/// Shows a modal material design bottom sheet.
+import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheetign bottom sheet.
 Future<T> showMaterialModalBottomSheet<T>({
   @required BuildContext context,
   @required WidgetBuilder builder,
