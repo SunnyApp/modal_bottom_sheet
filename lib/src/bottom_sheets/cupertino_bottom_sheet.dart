@@ -321,7 +321,7 @@ class CupertinoScaffold extends StatefulWidget {
 
   static Future<T> showCupertinoModalBottomSheet<T>({
     @required BuildContext context,
-    @required ScrollWidgetBuilder builder,
+    @required WidgetBuilder builder,
     double closeProgressThreshold,
     Curve animationCurve,
     Curve previousRouteAnimationCurve,
