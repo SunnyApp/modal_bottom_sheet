@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dartt';
 
 /// Shows a modal material design bottom sheet.
 Future<T> showMaterialModalBottomSheet<T>({
   @required BuildContext context,
   @required WidgetBuilder builder,
+  double closeProgressThreshold,
   Color backgroundColor,
   double elevation,
   ShapeBorder shape,
@@ -31,6 +33,7 @@ Future<T> showMaterialModalBottomSheet<T>({
   final result = await Navigator.of(context, rootNavigator: useRootNavigator)
       .push(ModalBottomSheetRoute<T>(
     builder: builder,
+    closeProgressThreshold: closeProgressThreshold,
     containerBuilder: _materialContainerBuilder(
       context,
       backgroundColor: backgroundColor,
