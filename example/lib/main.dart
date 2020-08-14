@@ -13,6 +13,7 @@ import 'modals/modal_will_scope.dart';
 import 'modals/modal_with_navigator.dart';
 import 'modals/modal_with_nested_scroll.dart';
 import 'modals/modal_with_scroll.dart';
+import 'modals/modal_with_page_view.dart';
 
 import 'examples/cupertino_share.dart';
 
@@ -221,6 +222,15 @@ class _MyHomePageState extends State<MyHomePage> {
                               builder: (context) =>
                                   NestedScrollModal(),
                             )),
+                    ListTile(
+                        title: Text('Modal with PageView'),
+                        onTap: () => showBarModalBottomSheet(
+                          expand: true,
+                          context: context,
+                          builder: (context, scrollController) =>
+                              ModalWithPageView(
+                                  scrollController: scrollController),
+                        )),
                     SizedBox(
                       height: 60,
                     )
