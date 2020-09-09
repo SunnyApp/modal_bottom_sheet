@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/src/utils/modal_scroll_controller.dart';
 
 import '../modal_bottom_sheet.dart';
 
@@ -76,10 +77,10 @@ class _ModalBottomSheetState<T> extends State<_ModalBottomSheet<T>> {
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMediaQuery(context));
-
-    return PrimaryScrollController(
-      controller: PrimaryScrollController.of(context) ??
-          (_scrollController ??= ScrollController()),
+    final scrollController = PrimaryScrollController.of(context) ??
+          (_scrollController ??= ScrollController());
+    return ModalScrollController(
+      controller: scrollController,
       child: Builder(
         builder: (context) => AnimatedBuilder(
           animation: widget.route._animationController,
@@ -110,7 +111,7 @@ class _ModalBottomSheetState<T> extends State<_ModalBottomSheet<T>> {
                 child: child,
                 enableDrag: widget.enableDrag,
                 bounce: widget.bounce,
-                scrollController: PrimaryScrollController.of(context),
+                scrollController: scrollController,
                 animationCurve: widget.animationCurve,
               ),
             );
