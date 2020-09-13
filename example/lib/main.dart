@@ -1,10 +1,11 @@
 import 'package:example/modals/circular_modal.dart';
+import 'package:example/modals/modal_with_scroll.dart';
 import 'package:example/web_frame.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import 'examples/cupertino_share.dart';
 import 'modals/floating_modal.dart';
 import 'modals/modal_complex_all.dart';
 import 'modals/modal_fit.dart';
@@ -12,10 +13,7 @@ import 'modals/modal_inside_modal.dart';
 import 'modals/modal_will_scope.dart';
 import 'modals/modal_with_navigator.dart';
 import 'modals/modal_with_nested_scroll.dart';
-import 'modals/modal_with_scroll.dart';
 import 'modals/modal_with_page_view.dart';
-
-import 'examples/cupertino_share.dart';
 
 void main() => runApp(MyApp());
 
@@ -202,8 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               expand: true,
                               context: context,
                               backgroundColor: Colors.transparent,
-                              builder: (context) =>
-                                  ComplexModal(),
+                              builder: (context) => ComplexModal(),
                             )),
                     ListTile(
                         title: Text('Modal with WillPopScope'),
@@ -211,26 +208,22 @@ class _MyHomePageState extends State<MyHomePage> {
                               expand: true,
                               context: context,
                               backgroundColor: Colors.transparent,
-                              builder: (context) =>
-                                  ModalWillScope(),
+                              builder: (context) => ModalWillScope(),
                             )),
                     ListTile(
                         title: Text('Modal with Nested Scroll'),
                         onTap: () => showCupertinoModalBottomSheet(
                               expand: true,
                               context: context,
-                              builder: (context) =>
-                                  NestedScrollModal(),
+                              builder: (context) => NestedScrollModal(),
                             )),
                     ListTile(
                         title: Text('Modal with PageView'),
                         onTap: () => showBarModalBottomSheet(
-                          expand: true,
-                          context: context,
-                          builder: (context, scrollController) =>
-                              ModalWithPageView(
-                                  scrollController: scrollController),
-                        )),
+                              expand: true,
+                              context: context,
+                              builder: (context) => ModalWithPageView(),
+                            )),
                     SizedBox(
                       height: 60,
                     )

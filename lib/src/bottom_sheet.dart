@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:modal_bottom_sheet/src/utils/bottom_sheet_suspended_curve.dart';
-import 'package:modal_bottom_sheet/src/utils/scroll_to_top_status_bardart';
+import 'package:modal_bottom_sheet/src/utils/scroll_to_top_status_bar.dart';
 
 const Curve _decelerateEasing = Cubic(0.0, 0.0, 0.2, 1.0);
 const Curve _modalBottomSheetCurve = _decelerateEasing;
@@ -292,16 +292,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
       // Otherwise the calculate the velocity with a VelocityTracker
       if (_velocityTracker == null) {
         // Checking the device type as per the OS installed in it
-        _velocityTracker = VelocityTracker(
-          // SmartPhone Devices
-          (Platform.isAndroid || Platform.isIOS)
-              ? PointerDeviceKind.touch
-              : // PCs or desktops or Laptops devices has mouse pointers
-              (Platform.isLinux || Platform.isWindows || Platform.isMacOS)
-                  ? VelocityTracker(PointerDeviceKind.mouse)
-                  : // Some unknown devices
-                  VelocityTracker(PointerDeviceKind.unknown),
-        );
+        _velocityTracker = VelocityTracker();
         _startTime = DateTime.now();
       }
       DragUpdateDetails dragDetails;
@@ -402,7 +393,10 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
       child: RepaintBoundary(child: child),
     );
 
-    return PrimaryScrollStatusBarHandler(child: child);
+    return ScrollToTopStatusBarHandler(
+      child: child,
+      scrollController: _scrollController,
+    );
   }
 }
 

@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class ModalWithNavigator extends StatelessWidget {
-
-
   const ModalWithNavigator({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final scrollController = PrimaryScrollController.of(context);
+    // final scrollController = PrimaryScrollController.of(context);
     return Material(
         child: Navigator(
       onGenerateRoute: (_) => MaterialPageRoute(
