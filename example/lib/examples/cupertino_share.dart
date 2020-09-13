@@ -13,8 +13,8 @@ class CupertinoSharePage extends StatelessWidget {
         appBar: appBar(context),
         body: CupertinoPageScaffold(
           child: Center(
-              child: Hero(
-            tag: 'image',
+            child: Hero(
+                tag: 'image',
                 child: ClipRect(
                     child: CachedNetworkImage(
                         imageUrl:
@@ -510,7 +510,8 @@ class AnimateWhenAppear extends StatefulWidget {
       @required this.duration,
       @required this.builder,
       this.child,
-      this.delay, this.curve})
+      this.delay,
+      this.curve})
       : super(key: key);
 
   @override
