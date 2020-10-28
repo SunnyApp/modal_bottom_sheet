@@ -292,7 +292,16 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
       // Otherwise the calculate the velocity with a VelocityTracker
       if (_velocityTracker == null) {
         // Checking the device type as per the OS installed in it
-        _velocityTracker = VelocityTracker();
+        _velocityTracker = VelocityTracker(
+          // SmartPhone Devices
+          (Platform.isAndroid || Platform.isIOS)
+              ? PointerDeviceKind.touch
+              : // PCs or desktops or Laptops devices has mouse pointers
+              (Platform.isLinux || Platform.isWindows || Platform.isMacOS)
+                  ? VelocityTracker(PointerDeviceKind.mouse)
+                  : // Some unknown devices
+                  VelocityTracker(PointerDeviceKind.unknown),
+        );
         _startTime = DateTime.now();
       }
       DragUpdateDetails dragDetails;
@@ -305,7 +314,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
       if (dragDetails != null) {
         final duration = _startTime.difference(DateTime.now());
         _velocityTracker.addPosition(duration, Offset(0, offset));
-        _handleDragUpdate(dragDetails.primaryDelta);
+        _handleDragUpdate(dragDetails.delta.dy);
       } else if (isDragging) {
         final velocity = _velocityTracker.getVelocity().pixelsPerSecond.dy;
         _velocityTracker = null;

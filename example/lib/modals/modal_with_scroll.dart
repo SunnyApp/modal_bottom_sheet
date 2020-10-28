@@ -7,6 +7,7 @@ class ModalWithScroll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  
     return Material(
       child: CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(

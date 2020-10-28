@@ -15,7 +15,8 @@ class ModalWithNavigator extends StatelessWidget {
           builder: (context) => CupertinoPageScaffold(
             navigationBar: CupertinoNavigationBar(
                 transitionBetweenRoutes: false,
-                leading: Container(), middle: Text('Modal Page')),
+                leading: Container(),
+                middle: Text('Modal Page')),
             child: SafeArea(
               bottom: false,
               child: ListView(
@@ -31,7 +32,6 @@ class ModalWithNavigator extends StatelessWidget {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => CupertinoPageScaffold(
                                       navigationBar: CupertinoNavigationBar(
-
                                         transitionBetweenRoutes: false,
                                         middle: Text('New Page'),
                                       ),
