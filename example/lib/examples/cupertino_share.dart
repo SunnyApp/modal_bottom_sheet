@@ -648,9 +648,8 @@ class CustomRectTween extends RectTween {
     final dist = Curves.easeInExpo.transform(a);
     //print(dist);
     //final lerp = lerpDouble(end.top  - height * (1-t) , end.top, t );
-    final lerp = lerpDouble(begin.top, end.top - height * (1 - dist), dist);
+    // final lerp = lerpDouble(begin.top, end.top - height * (1 - dist), dist);
     final rect = Rect.lerp(begin, end, dist);
     return Rect.fromLTWH(rect.left, rect.top, rect.width, rect.height);
-    ;
   }
 }

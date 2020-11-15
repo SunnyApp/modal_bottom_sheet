@@ -13,10 +13,8 @@ import 'modals/modal_inside_modal.dart';
 import 'modals/modal_will_scope.dart';
 import 'modals/modal_with_navigator.dart';
 import 'modals/modal_with_nested_scroll.dart';
-import 'modals/modal_with_scroll.dart';
 import 'modals/modal_with_page_view.dart';
-
-import 'examples/cupertino_share.dart';
+import 'modals/modal_with_scroll.dart';
 
 void main() => runApp(MyApp());
 

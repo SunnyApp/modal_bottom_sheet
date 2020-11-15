@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -292,15 +293,15 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
       // Otherwise the calculate the velocity with a VelocityTracker
       if (_velocityTracker == null) {
         // Checking the device type as per the OS installed in it
-        _velocityTracker = VelocityTracker(
+        _velocityTracker = VelocityTracker.withKind(
           // SmartPhone Devices
           (Platform.isAndroid || Platform.isIOS)
               ? PointerDeviceKind.touch
               : // PCs or desktops or Laptops devices has mouse pointers
               (Platform.isLinux || Platform.isWindows || Platform.isMacOS)
-                  ? VelocityTracker(PointerDeviceKind.mouse)
+                  ? VelocityTracker.withKind(PointerDeviceKind.mouse)
                   : // Some unknown devices
-                  VelocityTracker(PointerDeviceKind.unknown),
+                  VelocityTracker.withKind(PointerDeviceKind.unknown),
         );
         _startTime = DateTime.now();
       }

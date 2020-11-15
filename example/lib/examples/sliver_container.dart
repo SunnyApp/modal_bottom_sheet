@@ -94,7 +94,7 @@ class _SliverGroupElement extends RenderObjectElement {
   }
 
   @override
-  void insertChildRenderObject(RenderObject child, int slot) {
+  void insertRenderObjectChild(RenderObject child, dynamic slot) {
     final _RenderSliverGroup renderObject = this.renderObject;
     if (slot == 0) renderObject.decoration = child;
     if (slot == 1) renderObject.foregroundDecoration = child;
@@ -103,12 +103,13 @@ class _SliverGroupElement extends RenderObjectElement {
   }
 
   @override
-  void moveChildRenderObject(RenderObject child, slot) {
-    assert(false);
+  void moveRenderObjectChild(
+      RenderObject child, dynamic oldSlot, dynamic newSlot) {
+    assert(false, "Shouldn't be called");
   }
 
   @override
-  void removeChildRenderObject(RenderObject child) {
+  void removeRenderObjectChild(RenderObject child, dynamic slot) {
     final _RenderSliverGroup renderObject = this.renderObject;
     if (renderObject.decoration == child) renderObject.decoration = null;
     if (renderObject.foregroundDecoration == child)
