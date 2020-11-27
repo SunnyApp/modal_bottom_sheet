@@ -5,8 +5,8 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 Future<T> showMaterialModalBottomSheet<T>({
   @required BuildContext context,
-  @required WidgetBuilder builder,
   double closeProgressThreshold,
+  @required WidgetBuilder builder,
   Color backgroundColor,
   double elevation,
   ShapeBorder shape,
@@ -39,7 +39,7 @@ Future<T> showMaterialModalBottomSheet<T>({
       elevation: elevation,
       shape: shape,
       clipBehavior: clipBehavior,
-      theme: Theme.of(context, shadowThemeOnly: true),
+      theme: Theme.of(context),
     ),
     secondAnimationController: secondAnimation,
     bounce: bounce,

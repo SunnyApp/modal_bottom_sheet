@@ -2,10 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:async';
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
+import 'dart:async';package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -228,6 +225,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
 
     if (_dismissUnderway || !isDragging) return;
     isDragging = false;
+    // ignore: unawaited_futures
     _bounceDragController.reverse();
 
     var canClose = true;
@@ -241,6 +239,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
         _close();
       } else if (hasReachedCloseThreshold) {
         if (widget.animationController.value > 0.0) {
+          // ignore: unawaited_futures
           widget.animationController.fling(velocity: -1.0);
         }
         _close();
@@ -263,6 +262,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
     //Check if scrollController is used
     if (!_scrollController.hasClients) return;
     //Check if there is more than 1 attached ScrollController e.g. swiping page in PageView
+    // ignore: invalid_use_of_protected_member
     if (_scrollController.positions.length > 1) return;
 
     if (_scrollController !=
@@ -292,17 +292,9 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
 
       // Otherwise the calculate the velocity with a VelocityTracker
       if (_velocityTracker == null) {
-        // Checking the device type as per the OS installed in it
-        _velocityTracker = VelocityTracker.withKind(
-          // SmartPhone Devices
-          (Platform.isAndroid || Platform.isIOS)
-              ? PointerDeviceKind.touch
-              : // PCs or desktops or Laptops devices has mouse pointers
-              (Platform.isLinux || Platform.isWindows || Platform.isMacOS)
-                  ? VelocityTracker.withKind(PointerDeviceKind.mouse)
-                  : // Some unknown devices
-                  VelocityTracker.withKind(PointerDeviceKind.unknown),
-        );
+        //final pointerKind = defaultPointerDeviceKind(context);
+        // ignore: deprecated_member_use
+        _velocityTracker = VelocityTracker();
         _startTime = DateTime.now();
       }
       DragUpdateDetails dragDetails;
@@ -467,4 +459,24 @@ class _CustomBottomSheetLayout extends SingleChildLayoutDelegate {
     }
     return false;
   }
+}
+
+// Checks the device input type as per the OS installed in it
+// Mobile platforms will be default to `touch` while desktop will do to `mouse`
+// Used with VelocityTracker
+// https://github.com/flutter/flutter/pull/64267#issuecomment-694196304
+PointerDeviceKind defaultPointerDeviceKind(BuildContext context) {
+  final platform = Theme.of(context)?.platform ?? defaultTargetPlatform;
+  switch (platform) {
+    case TargetPlatform.iOS:
+    case TargetPlatform.android:
+      return PointerDeviceKind.touch;
+    case TargetPlatform.linux:
+    case TargetPlatform.macOS:
+    case TargetPlatform.windows:
+      return PointerDeviceKind.mouse;
+    case TargetPlatform.fuchsia:
+      return PointerDeviceKind.unknown;
+  }
+  return PointerDeviceKind.unknown;
 }

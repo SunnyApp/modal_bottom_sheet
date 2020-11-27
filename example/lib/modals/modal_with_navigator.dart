@@ -6,12 +6,11 @@ class ModalWithNavigator extends StatelessWidget {
   const ModalWithNavigator({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    // final scrollController = PrimaryScrollController.of(context);
+  Widget build(BuildContext rootContext) {
     return Material(
         child: Navigator(
       onGenerateRoute: (_) => MaterialPageRoute(
-        builder: (context) => Builder(
+        builder: (context2) => Builder(
           builder: (context) => CupertinoPageScaffold(
             navigationBar: CupertinoNavigationBar(
                 transitionBetweenRoutes: false,
@@ -29,16 +28,25 @@ class ModalWithNavigator extends StatelessWidget {
                       (index) => ListTile(
                             title: Text('Item'),
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
                                   builder: (context) => CupertinoPageScaffold(
-                                      navigationBar: CupertinoNavigationBar(
-                                        transitionBetweenRoutes: false,
-                                        middle: Text('New Page'),
-                                      ),
-                                      child: Stack(
-                                        fit: StackFit.expand,
-                                        children: <Widget>[],
-                                      ))));
+                                    navigationBar: CupertinoNavigationBar(
+                                      middle: Text('New Page'),
+                                    ),
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: <Widget>[
+                                        MaterialButton(
+                                          onPressed: () =>
+                                              Navigator.of(rootContext).pop(),
+                                          child: Text('touch here'),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
                             },
                           )),
                 ).toList(),

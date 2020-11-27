@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ModalWillScope extends StatelessWidget {
-
-
   const ModalWillScope({Key key}) : super(key: key);
 
   @override
